@@ -1,15 +1,25 @@
 import React from "react";
 
 export const Tabs = ({ tab, setTab }) => {
-
-
   return (
-    <section>
+    <section className="tabs">
       <div>
-        <button>Zaměstnavatel</button>
+        <button
+          onClick={() => setTab("zaměstnavatel")}
+          style={{ borderTopLeftRadius: "10px" }}
+          className={tab === "zaměstnavatel" ? "active" : null}
+        >
+          Zaměstnavatel
+        </button>
       </div>
       <div>
-        <button>Zaměstnanec</button>
+        <button
+          onClick={() => setTab("zaměstnanec")}
+          style={{ borderTopRightRadius: "10px" }}
+          className={tab === "zaměstnanec" && "active"}
+        >
+          Zaměstnanec
+        </button>
       </div>
     </section>
   );

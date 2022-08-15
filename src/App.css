@@ -10,5 +10,24 @@
   max-width: 500px;
   max-height: 500px;
   height: 50vh;
-  padding: 15px;
+}
+
+.tabs {
+  display: flex;
+}
+
+.tabs > div {
+  width: 50%;
+  height: 40px;
+}
+
+.tabs > div > button {
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  border: none;
+  background-color: #bda235;
+}
+
+.active {
+  background-color: #e6be1c !important;
 }
