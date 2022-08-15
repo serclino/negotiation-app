@@ -1,11 +1,15 @@
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { Tabs } from "./components/Tabs";
 
-function App() {
+const App = () => {
+  const [tab, setTab] = useState("zaměstnavatel");
+
   return (
-    <div className="App">
-
-    </div>
+    <>
+      <Tabs tab={tab} setTab={setTab} />
+    </>
   );
-}
+};
 
 export default App;
