@@ -31,3 +31,58 @@
 .active {
   background-color: #e6be1c !important;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+input {
+  text-align: center;
+  margin: 15px 0;
+  max-width: 60px;
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+}
+
+input:focus {
+  outline: solid 2px black;
+}
+
+form > button {
+  width: 120px;
+  padding: 10px 0;
+  border-radius: 10px;
+  background-color: #87cefa;
+}
+
+/* This hides arrows from inputs using number */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.popup {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+
+  z-index: 10;
+  width: 60%;
+  height: 60%;
+  background-color: white;
+}
