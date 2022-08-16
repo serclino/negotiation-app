@@ -1,6 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 
 export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
+  const [weatherData, setWeatherData] = useState({
+    name: "Praha",
+    weather: "",
+    icon: "",
+    temp: "",
+  });
+  /* 
+  const api_key = "";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=Prague&lang=cz&units=metric&appid=${api_key}`
+      );
+      const data = await response.json();
+      setWeatherData((prev) => ({
+        ...prev,
+        weather: data.weather[0].description,
+        icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
+        temp: Math.floor(data.main.temp),
+      }));
+    };
+    fetchData();
+  }, []);
+ */
   const getOutcome = (min, max) => {
     if (min < max || min === max) {
       return "Úspěch! 🤝";
@@ -13,10 +38,23 @@ export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
     setMin(null);
     setMax(null);
     setTab("zaměstnavatel");
+    setWeatherData((prev) => ({ ...prev })); //delete later, now just here for production build
   };
 
   return (
     <div className="popup">
+      <div className="weather">
+        {!weatherData.weather ? (
+          <p style={{ marginRight: "15px" }}>Načítání počasí...</p>
+        ) : (
+          <>
+            <p>
+              {weatherData.name}, {weatherData.temp} °C, {weatherData.weather}
+            </p>
+            <img src={weatherData.icon} alt="weather-icon" />
+          </>
+        )}
+      </div>
       <h1>{getOutcome(min, max)}</h1>
       <p>
         Max. nabídka zaměstnavatele: <br /> <b>{max} Kč</b>

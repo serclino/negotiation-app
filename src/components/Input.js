@@ -31,8 +31,8 @@ export const Input = ({ tab, setTab, setMin, setMax }) => {
         name="nabídka"
         min="0"
         placeholder="300 Kč"
-        value={inputVal}
-        onChange={(e) => setInputVal(e.target.value)}
+        value={inputVal.toString()}
+        onChange={(e) => setInputVal(Number(e.target.value))}
       />
       <button type="submit">Submit</button>
     </form>
