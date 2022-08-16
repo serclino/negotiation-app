@@ -23,14 +23,14 @@ export const Input = ({ tab, setTab, setMin, setMax }) => {
     <form onSubmit={(e) => handleSubmit(e)}>
       <label htmlFor="nabídka">
         {tab === "zaměstnavatel"
-          ? "Maximální nabídka (Kč):"
-          : "Minimální mzda (Kč):"}
+          ? "Maximální nabídka:"
+          : "Minimální mzda:"}
       </label>
       <input
         type="number"
         name="nabídka"
         min="0"
-        placeholder="300"
+        placeholder="300 Kč"
         value={inputVal}
         onChange={(e) => setInputVal(e.target.value)}
       />
