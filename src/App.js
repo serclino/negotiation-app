@@ -16,11 +16,19 @@ const App = () => {
         tab={tab}
         setTab={setTab}
         min={min}
-        max={max}
         setMin={setMin}
+        max={max}
         setMax={setMax}
       />
-      {min && max && <PopUp />}
+      {min && max && (
+        <PopUp
+          min={min}
+          setMin={setMin}
+          max={max}
+          setMax={setMax}
+          setTab={setTab}
+        />
+      )}
     </>
   );
 };
