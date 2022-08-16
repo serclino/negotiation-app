@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
   const [weatherData, setWeatherData] = useState({
@@ -7,8 +7,8 @@ export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
     icon: "",
     temp: "",
   });
-  /* 
-  const api_key = "";
+  
+  const api_key = `${process.env.REACT_APP_WEATHER_KEY}`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,8 +24,8 @@ export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
       }));
     };
     fetchData();
-  }, []);
- */
+  }, [api_key]);
+
   const getOutcome = (min, max) => {
     if (min < max || min === max) {
       return "Úspěch! 🤝";
@@ -38,7 +38,6 @@ export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
     setMin(null);
     setMax(null);
     setTab("zaměstnavatel");
-    setWeatherData((prev) => ({ ...prev })); //delete later, now just here for production build
   };
 
   return (
