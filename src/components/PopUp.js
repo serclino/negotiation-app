@@ -17,6 +17,11 @@ export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
         const response = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=Prague&lang=cz&units=metric&appid=${api_key}`
         );
+        if (response.status !== 200) {
+          throw new Error(
+            "Unexpected error occured while accessing API endpoint."
+          );
+        }
         const data = await response.json();
         setWeatherData((prev) => ({
           ...prev,
@@ -27,7 +32,7 @@ export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
         setStatus("success");
       } catch (err) {
         console.log(err);
-        setStatus("failed");
+        setStatus("error");
       }
     };
     fetchData();
@@ -61,7 +66,9 @@ export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
             <img src={weatherData.icon} alt="weather-icon" />
           </>
         )}
-        {status === "failed" && <p>Data nenačtena.</p>}
+        {status === "error" && (
+          <p style={{ marginRight: "15px" }}>Data o počasí nenačtena</p>
+        )}
       </div>
       <h1>{getOutcome(min, max)}</h1>
       <p>

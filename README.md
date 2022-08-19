@@ -1,6 +1,7 @@
 # Negotiation App
 
 Employer and employee enter salary values and the app tells if their expectations meet.
+[Live Version](https://negotiation-application.netlify.app/).
 
 ## Installation & Running the App
 
