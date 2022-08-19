@@ -7,21 +7,25 @@ export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
     icon: "",
     temp: "",
   });
-  
+
   const api_key = `${process.env.REACT_APP_WEATHER_KEY}`;
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=Prague&lang=cz&units=metric&appid=${api_key}`
-      );
-      const data = await response.json();
-      setWeatherData((prev) => ({
-        ...prev,
-        weather: data.weather[0].description,
-        icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
-        temp: Math.floor(data.main.temp),
-      }));
+      try {
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=Prague&lang=cz&units=metric&appid=${api_key}`
+        );
+        const data = await response.json();
+        setWeatherData((prev) => ({
+          ...prev,
+          weather: data.weather[0].description,
+          icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
+          temp: Math.floor(data.main.temp),
+        }));
+      } catch (err) {
+        console.log(err);
+      }
     };
     fetchData();
   }, [api_key]);
