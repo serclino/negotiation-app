@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
+  const [loading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState({
     name: "Praha",
     weather: "",
@@ -23,6 +24,7 @@ export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
           icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
           temp: Math.floor(data.main.temp),
         }));
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -47,7 +49,7 @@ export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
   return (
     <div className="popup">
       <div className="weather">
-        {!weatherData.weather ? (
+        {loading ? (
           <p style={{ marginRight: "15px" }}>Načítání počasí...</p>
         ) : (
           <>
