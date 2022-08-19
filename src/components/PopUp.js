@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
-  const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState("loading");
   const [weatherData, setWeatherData] = useState({
     name: "Praha",
     weather: "",
@@ -24,9 +24,10 @@ export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
           icon: `http://openweathermap.org/img/w/${data.weather[0].icon}.png`,
           temp: Math.floor(data.main.temp),
         }));
-        setLoading(false);
+        setStatus("success");
       } catch (err) {
         console.log(err);
+        setStatus("failed");
       }
     };
     fetchData();
@@ -49,9 +50,10 @@ export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
   return (
     <div className="popup">
       <div className="weather">
-        {loading ? (
+        {status === "loading" && (
           <p style={{ marginRight: "15px" }}>Načítání počasí...</p>
-        ) : (
+        )}
+        {status === "success" && (
           <>
             <p>
               {weatherData.name}, {weatherData.temp} °C, {weatherData.weather}
@@ -59,6 +61,7 @@ export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
             <img src={weatherData.icon} alt="weather-icon" />
           </>
         )}
+        {status === "failed" && <p>Data nenačtena.</p>}
       </div>
       <h1>{getOutcome(min, max)}</h1>
       <p>
