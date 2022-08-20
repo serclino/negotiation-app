@@ -38,8 +38,8 @@ export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
     fetchData();
   }, [api_key]);
 
-  const getOutcome = (min, max) => {
-    if (min < max || min === max) {
+  const getOutcome = () => {
+    if (min <= max) {
       return "Úspěch! 🤝";
     } else {
       return "Nevyšlo to... 😟";
@@ -70,7 +70,7 @@ export const PopUp = ({ min, setMin, max, setMax, setTab }) => {
           <p style={{ marginRight: "15px" }}>Data o počasí nenačtena</p>
         )}
       </div>
-      <h1>{getOutcome(min, max)}</h1>
+      <h1>{getOutcome()}</h1>
       <p>
         Max. nabídka zaměstnavatele: <br /> <b>{max} Kč</b>
       </p>
